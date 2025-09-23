@@ -93,7 +93,7 @@ const Page = () => {
         </div>
 
         <div className="w-[270px] h-[36px] flex gap-[10px]">
-          <div className=" h-[14px]">Don't have an account?</div>
+          <div className=" h-[14px]">Do not have an account?</div>
           <a className=" h-[36px] text-[#0095F6]" href="/signup">
             Sign up
           </a>

@@ -52,7 +52,7 @@ const Page = () => {
             Explore AI generated images
           </div>
           <div className="flow-horizontal">
-            Describe what's on your mind. For best results, be specific
+            Describe what is on your mind. For best results, be specific
           </div>
         </div>
         <Textarea
