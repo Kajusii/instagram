@@ -66,7 +66,7 @@ const Page = () => {
           Generate
         </Button>
       </div>
-      <img src={image} className=" rounded-lg shadow-md" />
+      <img src={image} className="rounded-lg shadow-md w-full h-[500px]" />
     </div>
   );
 };
