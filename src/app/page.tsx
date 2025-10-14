@@ -27,17 +27,6 @@ type Post = {
     _id: string;
     profilePicture: string;
   };
-  data: {
-    createdAt: Date;
-    email: string;
-    followers: string[];
-    following: string[];
-    password: string;
-    updatedAt: Date;
-    username: string;
-    _id: string;
-    profilePicture: string;
-  };
 };
 
 const Page = () => {
