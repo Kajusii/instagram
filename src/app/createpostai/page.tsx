@@ -1,12 +1,19 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useUser } from "@/provider/AuthProvider";
 import { upload } from "@vercel/blob/client";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
+import Instagram from "../_components/header";
 
 const Page = () => {
+  const { user, token } = useUser();
   const [inputValue, setInputValue] = useState("");
+  const [captionValue, setCaptionValue] = useState("");
   const [image, setImages] = useState("");
+  const router = useRouter();
   const handleValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target;
     setInputValue(value);
@@ -27,27 +34,58 @@ const Page = () => {
           parameters: {
             negative_prompt: "blurry, bad quality, distorted",
             num_inference_stops: 20,
-            guidance_scale: 7.5,
+            guidance_scale: 7.6,
           },
         }),
       }
     );
 
     const blob = await res.blob();
-    const imageUrl = URL.createObjectURL(blob);
-    setImages(imageUrl);
+
     const file = new File([blob], "generated.png", { type: "image/png" });
+
     const uploaded = await upload(file.name, file, {
       access: "public",
       handleUploadUrl: "/api/upload",
     });
-    console.log(uploaded);
+
+    setImages(uploaded.url);
+  };
+  const captionValues = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setCaptionValue(value);
+  };
+  const createPost = async () => {
+    const response = await fetch("http://localhost:5555/post/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        caption: captionValue,
+        images: [image],
+      }),
+    });
+    const res = response.json();
+    console.log(res);
+    console.log(user, "user");
+    if (response.ok) {
+      router.push("/");
+    }
   };
 
   return (
-    <div>
+    <div className="mb-[41px] mt-[55px]">
+      <Instagram />
+
       <div className="flex">
-        <button className="w-[40px] h-[40px]">X</button>
+        <button
+          className="w-[40px] h-[40px]"
+          onClick={() => router.push("/createpost")}
+        >
+          X
+        </button>
         <div className="w-[130px] h-[20px] font-bold ml-[100px] mt-[10px]">
           New photo post
         </div>
@@ -73,7 +111,16 @@ const Page = () => {
           Generate
         </Button>
       </div>
-      <img src={image} className="rounded-lg shadow-md w-full h-[500px]" />
+      <img src={image} className="w-[100px] h-[100px]" />
+      <Input
+        placeholder="your caption"
+        onChange={(e) => {
+          captionValues(e);
+        }}
+      />
+      <Button className="h-[36px] w-[200px]" onClick={createPost}>
+        create a post
+      </Button>
     </div>
   );
 };

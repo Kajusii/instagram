@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@/provider/AuthProvider";
 import { toast } from "sonner";
 const Page = () => {
-  const { user, setUser } = useUser();
+  const { token, setToken } = useUser();
   const router = useRouter();
   const [InputValues, setInputValue] = useState({
     email: "",
@@ -26,15 +26,16 @@ const Page = () => {
         username: InputValues.username,
       }),
     });
-
-    if (data.ok) {
-      const newUser = await data.json();
-      localStorage.setItem("user", JSON.stringify(newUser));
-      setUser(newUser);
-      router.push("/");
-      toast.success("Sign up successful");
-    } else {
-      toast.error("this email already existed");
+    if (window.location !== undefined) {
+      if (data.ok) {
+        const newUser = await data.json();
+        localStorage.setItem("token", newUser);
+        setToken(newUser);
+        router.push("/");
+        toast.success("Sign up successful");
+      } else {
+        toast.error("this email already existed");
+      }
     }
   };
   const handleValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -49,13 +50,11 @@ const Page = () => {
       setInputValue({ ...InputValues, username: value });
     }
   };
-
-  console.log(InputValues);
   useEffect(() => {
-    if (user) {
+    if (token) {
       router.push("/");
     }
-  }, []);
+  }, [token]);
   return (
     <div className="flex flex-col gap-[64px] pt-[200px] pr-[80px] pb-[200px] pl-[80px] w-[430px] h-[932px]">
       <div className="flex flex-col gap-[24px]">

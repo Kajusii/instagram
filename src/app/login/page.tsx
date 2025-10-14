@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { AuthContext, useUser } from "@/provider/AuthProvider";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const Page = () => {
-  const { user, setUser } = useUser();
+  const { user, setUser, setToken, token } = useUser();
 
   const [InputValues, setInputValue] = useState({
     email: "",
@@ -37,22 +37,24 @@ const Page = () => {
         password: InputValues.password,
       }),
     });
-    if (response.ok) {
-      const user = await response.json();
-      localStorage.setItem("user", JSON.stringify(user));
-      setUser(user);
-      router.push("/");
-      toast.success("Log in successful");
-    } else {
-      toast.error("wrong password");
+    if (window.location !== undefined) {
+      if (response.ok) {
+        const token = await response.json();
+        localStorage.setItem("token", token);
+        setToken(token);
+        router.push("/");
+        toast.success("Log in successful");
+      } else {
+        toast.error("wrong password");
+      }
     }
   };
 
   useEffect(() => {
-    if (user) {
+    if (token) {
       router.push("/");
     }
-  }, [user]);
+  }, [token]);
 
   return (
     <div className="flex flex-col gap-[64px] pt-[200px] pr-[80px] pb-[200px] pl-[80px] w-[430px] h-[932px]">

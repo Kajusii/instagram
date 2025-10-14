@@ -1,4 +1,5 @@
 "use client";
+import { jwtDecode } from "jwt-decode";
 import {
   createContext,
   Dispatch,
@@ -11,29 +12,43 @@ import {
 type Content = {
   user: User | null;
   setUser: Dispatch<SetStateAction<null | User>>;
+  token: string | null;
+  setToken: Dispatch<SetStateAction<null>>;
 };
 type User = {
+  _id: string;
   email: string;
   password: string;
   username: string;
   bio: string | null;
   profilePicture: string | null;
 };
+
 export const AuthContext = createContext<Content | null>(null);
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
     const userItem = localStorage.getItem("user");
     if (userItem) {
       setUser(JSON.parse(userItem));
     }
+    const tokenItem = localStorage.getItem("token");
+    if (tokenItem) {
+      const decodedToken = jwtDecode(tokenItem);
+      setToken(tokenItem);
+      setUser(decodedToken);
+      console.log(decodedToken);
+    }
   }, []);
 
   const values = {
     user,
     setUser,
+    token,
+    setToken,
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
