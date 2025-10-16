@@ -30,6 +30,7 @@ type Post = {
 };
 
 const Page = () => {
+  const [comments, setComment] = useState([]);
   const { user } = useUser();
   const [posts, setPost] = useState<Post[]>([]);
   const { token } = useUser();
@@ -69,6 +70,9 @@ const Page = () => {
     });
     getImages();
   };
+
+  console.log(posts);
+
   useEffect(() => {
     if (!token) {
       router.push("/login");
@@ -77,8 +81,6 @@ const Page = () => {
       getImages();
     }
   }, [token]);
-  console.log(posts);
-
   return (
     <div className="mb-[41px] mt-[55px]">
       <Instagram />
@@ -133,11 +135,13 @@ const Page = () => {
                   )}
                   <div>{posts.like.length}</div>
                 </div>
-                <MessageCircle
-                  onClick={() => {
-                    router.push(`comment/${posts._id}`);
-                  }}
-                />
+                <div>
+                  <MessageCircle
+                    onClick={() => {
+                      router.push(`comment/${posts._id}`);
+                    }}
+                  />
+                </div>
               </div>
               <div className="flex flex-col gap-[20px]">
                 <div className="flex gap-[5px] mt-[10px]">
