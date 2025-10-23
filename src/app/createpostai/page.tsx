@@ -5,14 +5,33 @@ import { Textarea } from "@/components/ui/textarea";
 import { useUser } from "@/provider/AuthProvider";
 import { upload } from "@vercel/blob/client";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import Instagram from "../_components/header";
-
+type Post = {
+  _id: string;
+  caption: string;
+  images: string[];
+  like: string[];
+  comment: string[];
+  updatedAt: Date;
+  createdAt: Date;
+  user: {
+    createdAt: Date;
+    email: string;
+    followers: string[];
+    following: string[];
+    password: string;
+    updatedAt: Date;
+    username: string;
+    _id: string;
+    profilePicture: string;
+  };
+};
 const Page = () => {
   const { user, token } = useUser();
   const [inputValue, setInputValue] = useState("");
   const [captionValue, setCaptionValue] = useState("");
-  const [image, setImages] = useState("");
+  const [image, setImages] = useState(null);
   const router = useRouter();
   const handleValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target;
@@ -74,7 +93,11 @@ const Page = () => {
       router.push("/");
     }
   };
-
+  useEffect(() => {
+    if (!token) {
+      router.push("/login");
+    }
+  }, [token]);
   return (
     <div className="mb-[41px] mt-[55px]">
       <Instagram />

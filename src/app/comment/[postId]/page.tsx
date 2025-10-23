@@ -8,7 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 
 const Page = () => {
-  const { token } = useUser();
+  const { user, token } = useUser();
   const params = useParams();
   const [comments, setComment] = useState([]);
   const postId = params.postId;
@@ -29,6 +29,17 @@ const Page = () => {
     const response = await res.json();
     setComment(response);
   };
+  const deleteComment = async (commentId: string) => {
+    await fetch(`http://localhost:5555/comment/delete/${commentId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    allComment();
+  };
+
   const comment = async () => {
     const res = await fetch(`http://localhost:5555/comment/create/${postId}`, {
       method: "POST",
@@ -99,6 +110,20 @@ const Page = () => {
                   <div className="flex gap-[10px]">
                     <div className="font-bold">{comment?.user?.username}</div>
                     <div>{comment?.comment}</div>
+                    <div>
+                      {comment?.user._id === user?.data?._id ? (
+                        <div
+                          className="text-[#FF0000]"
+                          onClick={() => {
+                            deleteComment(comment._id);
+                          }}
+                        >
+                          delete
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
+                    </div>
                   </div>
                   <div>{comment?.createdAt}</div>
                 </div>

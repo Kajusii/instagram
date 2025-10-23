@@ -30,7 +30,14 @@ const Page = () => {
             <Images />
           </div>
           <div className="flex flex-col gap-[10px]">
-            <Button className="w-[147px] h-[36px]">Photo Library</Button>
+            <Button
+              className="w-[147px] h-[36px]"
+              onClick={() => {
+                router.push("newpost");
+              }}
+            >
+              Photo Library
+            </Button>
             <button
               className="w-[147px] h-[36px] ml-[10px]"
               onClick={() => {

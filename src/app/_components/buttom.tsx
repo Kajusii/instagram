@@ -11,7 +11,9 @@ const Button = () => {
         <Link href="/">
           <House className="h-[25px] w-[25px] " />
         </Link>
-        <Search className="h-[25px] w-[25px]" />
+        <Link href="/search">
+          <Search className="h-[25px] w-[25px]" />
+        </Link>
         <Link href="/createpost">
           <SquarePlus className="h-[25px] w-[25px]" />
         </Link>
