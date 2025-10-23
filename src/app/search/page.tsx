@@ -66,9 +66,9 @@ const Page = () => {
       />
 
       <div className="search-results mt-4">
-        {filterred.map((user) => {
+        {filterred.map((user,index) => {
           return (
-            <div className="result-item flex items-center gap-4 p-2 hover:bg-gray-100 rounded-lg cursor-pointer">
+            <div className="result-item flex items-center gap-4 p-2 hover:bg-gray-100 rounded-lg cursor-pointer" key={index}>
               <img
                 src={
                   user.profilePicture ??

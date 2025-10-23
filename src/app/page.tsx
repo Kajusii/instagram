@@ -30,7 +30,7 @@ type Post = {
 };
 
 const Page = () => {
-  const [comments, setComment] = useState([]);
+
   const { user } = useUser();
   const [posts, setPost] = useState<Post[]>([]);
   const { token } = useUser();

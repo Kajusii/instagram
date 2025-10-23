@@ -109,9 +109,9 @@ const Page = () => {
             router.push(`/AllPost/${userId}`);
           }}
         >
-          {post.map((item) => {
+          {post.map((item,index) => {
             return (
-              <div>
+              <div key={index}>
                 <img src={item?.images[0]} className="w-[140px] h-[188px]" />
               </div>
             );

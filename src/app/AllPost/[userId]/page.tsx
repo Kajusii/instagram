@@ -3,10 +3,10 @@ import Buttom from "@/app/_components/buttom";
 import Instagram from "@/app/_components/header";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@/provider/AuthProvider";
-import { EllipsisIcon, Heart, MessageCircle } from "lucide-react";
+import { Heart, MessageCircle } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Ellipsis } from "lucide-react";
+
 type Post = {
   _id: string;
   caption: string;
