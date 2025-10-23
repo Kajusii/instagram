@@ -22,7 +22,7 @@ type Post = {
     _id: string;
     profilePicture: string;
   };
-
+bio:string
   email: string;
   followers: [];
   following: [];
@@ -112,7 +112,7 @@ const Page = () => {
           {post.map((item) => {
             return (
               <div>
-                <img src={item?.images} className="w-[140px] h-[188px]" />
+                <img src={item?.images[0]} className="w-[140px] h-[188px]" />
               </div>
             );
           })}

@@ -94,7 +94,7 @@ const Page = () => {
         })}
       </div>
 
-      <Button className="mt-4 w-full bg-blue-500 text-white rounded-lg py-2 hover:bg-blue-600" />
+      <Button  />
     </div>
   );
 };

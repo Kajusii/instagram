@@ -12,7 +12,7 @@ const Page = () => {
   const { token } = useUser();
   const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<string | null>(null);
   const [captionValue, setCaptionValue] = useState("");
   const fetchFile = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -74,7 +74,7 @@ const Page = () => {
         }}
       />
       <div>
-        <img src={image} />
+      <img src={image ?? 'fallback-image.jpg'} />
       </div>
       <Button onClick={createPost}>Post</Button>
       <Least />

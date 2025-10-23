@@ -12,7 +12,7 @@ type Post = {
   _id: string;
   caption: string;
   images: string[];
-  like: number[];
+  like: string[];
   comment: number[];
   updatedAt: Date;
   createdAt: Date;

@@ -31,7 +31,7 @@ const Page = () => {
   const { user, token } = useUser();
   const [inputValue, setInputValue] = useState("");
   const [captionValue, setCaptionValue] = useState("");
-  const [image, setImages] = useState(null);
+  const [image, setImages] = useState<string | null>(null);
   const router = useRouter();
   const handleValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target;
@@ -134,7 +134,7 @@ const Page = () => {
           Generate
         </Button>
       </div>
-      <img src={image} className="w-[100px] h-[100px]" />
+      <img src={image ?? 'fallback-image.jpg'}/>
       <Input
         placeholder="your caption"
         onChange={(e) => {

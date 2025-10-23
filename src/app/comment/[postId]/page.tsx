@@ -6,11 +6,34 @@ import { Button } from "@/components/ui/button";
 import { useUser } from "@/provider/AuthProvider";
 import { useParams, useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
-
+type Comment = {
+  createdAt: Date;
+  comment: string
+  user: any;
+  post: any;
+  _id: string;
+  email: string;
+  password: string;
+  username: string;
+  bio: string | null;
+  profilePicture: string | null;
+  data: {
+    createdAt: Date;
+    email: string;
+    followers: string[];
+    following: string[];
+    password: string;
+    updatedAt: Date;
+    username: string;
+    _id: string;
+    profilePicture: string;
+    bio:string
+  };
+};
 const Page = () => {
   const { user, token } = useUser();
   const params = useParams();
-  const [comments, setComment] = useState([]);
+  const [comments, setComment] = useState<Comment[]>([]);
   const postId = params.postId;
   const [input, setInput] = useState("");
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -125,7 +148,7 @@ const Page = () => {
                       )}
                     </div>
                   </div>
-                  <div>{comment?.createdAt}</div>
+                  <div>{comment?.createdAt.toString()}</div>
                 </div>
               </div>
             </div>

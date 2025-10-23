@@ -11,7 +11,7 @@ import { upload } from "@vercel/blob/client";
 const Page = () => {
   const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<string | null>(null);
   const { user, token } = useUser();
   const [inputValues, setInputValues] = useState({
     username: "",
@@ -109,7 +109,7 @@ const Page = () => {
       </div>
       <Button onClick={photo}>upload image</Button>
       <div>
-        <img src={image} />
+      <img src={image ?? 'fallback-image.jpg'} />
       </div>
       <Button
         onClick={() => {

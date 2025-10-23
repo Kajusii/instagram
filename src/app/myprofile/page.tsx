@@ -107,7 +107,7 @@ const Page = () => {
         {post.map((post, index) => {
           return (
             <div key={index}>
-              <img src={post?.images} className="w-[140px] h-[188px]" />
+              <img src={post?.images[0]} className="w-[140px] h-[188px]" />
             </div>
           );
         })}

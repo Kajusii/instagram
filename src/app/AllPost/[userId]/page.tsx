@@ -45,7 +45,7 @@ const Page = () => {
   const userId = params.userId;
   const { token, user } = useUser();
   const [post, setPost] = useState<Post[]>([]);
-  const [data, setData] = useState<Data[]>([]);
+  const [data, setData] = useState<Data>();
   const [like, setLike] = useState(0);
   const clickLikes = async (postId: string) => {
     const res = await fetch(`http://localhost:5555/post/likes/${postId}`, {
