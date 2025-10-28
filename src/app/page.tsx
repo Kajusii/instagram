@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 "use client";
 
 import { useUser } from "@/provider/AuthProvider";
@@ -48,7 +49,7 @@ const Page = () => {
     setLike(response);
     getImages();
   };
-
+console.log(like)
   const getImages = async () => {
     const res = await fetch("http://localhost:5555/post/allpost", {
       method: "GET",
@@ -61,7 +62,7 @@ const Page = () => {
     setPost(response);
   };
   const clickFollow = async (id: string) => {
-    const res = await fetch(`http://localhost:5555/follow-toggle/${id}`, {
+     await fetch(`http://localhost:5555/follow-toggle/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

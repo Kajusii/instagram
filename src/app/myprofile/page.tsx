@@ -12,7 +12,8 @@ type Post = {
   comment: string[];
   updatedAt: Date;
   createdAt: Date;
-  user: {
+  bio:string
+    data: {
     createdAt: Date;
     email: string;
     followers: string[];
@@ -22,6 +23,7 @@ type Post = {
     username: string;
     _id: string;
     profilePicture: string;
+    bio:string;
   };
 };
 const Page = () => {

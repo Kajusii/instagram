@@ -12,7 +12,7 @@ const Page = () => {
   const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
   const [image, setImage] = useState<string | null>(null);
-  const { user, token } = useUser();
+  const {  token } = useUser();
   const [inputValues, setInputValues] = useState({
     username: "",
     bio: "",

@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 "use client";
 import { useUser } from "@/provider/AuthProvider";
 import Buttom from "../_components/buttom";
@@ -57,6 +59,7 @@ const Page = () => {
     setLike(response);
     getUserPost();
   };
+  console.log(like)
   const getUserPost = async () => {
     const data = await fetch(`http://localhost:5555/post/userpost`, {
       method: "GET",
@@ -68,7 +71,7 @@ const Page = () => {
     setData(userPost);
   };
   const clickFollow = async (id: string) => {
-    const res = await fetch(`http://localhost:5555/follow-toggle/${id}`, {
+    await fetch(`http://localhost:5555/follow-toggle/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

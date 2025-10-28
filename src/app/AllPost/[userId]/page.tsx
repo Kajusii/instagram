@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 "use client";
 import Buttom from "@/app/_components/buttom";
 import Instagram from "@/app/_components/header";
@@ -58,9 +59,10 @@ const Page = () => {
     setLike(response);
     getOtherPost();
   };
+  console.log(like)
 
   const clickFollow = async (id: string) => {
-    const res = await fetch(`http://localhost:5555/follow-toggle/${id}`, {
+     await fetch(`http://localhost:5555/follow-toggle/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -99,6 +101,7 @@ const Page = () => {
       getOtherPost();
       getOtherData();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
   return (
     <div className="mb-[41px] mt-[55px]">

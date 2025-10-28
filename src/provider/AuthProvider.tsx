@@ -11,9 +11,9 @@ import {
 } from "react";
 type Content = {
   user: User | null;
-  setUser: Dispatch<SetStateAction<null | User>>;
+  setUser: Dispatch<SetStateAction<null |User>>;
   token: string | null;
-  setToken: Dispatch<SetStateAction<null>>;
+  setToken: Dispatch<SetStateAction<null | string>>;
 };
 type User = {
   _id: string;
@@ -32,6 +32,7 @@ type User = {
     username: string;
     _id: string;
     profilePicture: string;
+    bio:string;
   };
 };
 
@@ -48,7 +49,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     }
     const tokenItem = localStorage.getItem("token");
     if (tokenItem) {
-      const decodedToken = jwtDecode(tokenItem);
+      const decodedToken = jwtDecode<User>(tokenItem);
       setToken(tokenItem);
       setUser(decodedToken);
       console.log(decodedToken);

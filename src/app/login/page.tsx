@@ -3,13 +3,13 @@
 import Ig from "@/app/images/igLogo.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { AuthContext, useUser } from "@/provider/AuthProvider";
+import {useUser } from "@/provider/AuthProvider";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const Page = () => {
-  const { user, setUser, setToken, token } = useUser();
+  const { setToken, token } = useUser();
 
   const [InputValues, setInputValue] = useState({
     email: "",
