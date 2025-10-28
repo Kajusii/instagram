@@ -11,8 +11,8 @@ import Least from "../_components/buttom";
 const Page = () => {
   const { token } = useUser();
   const router = useRouter();
-  const [file, setFile] = useState<File | null>(null);
-  const [image, setImage] = useState<string | null>(null);
+ const [file, setFile] = useState<File | null>(null);
+const [image, setImage] = useState<string[]>([]);
   const [captionValue, setCaptionValue] = useState("");
   const fetchFile = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -27,8 +27,9 @@ const Page = () => {
       handleUploadUrl: "/api/upload",
     });
     console.log(uploaded);
-    setImage(uploaded.url);
+    setImage((prev)=>[...prev,uploaded.url]);
   };
+  console.log(image)
   const handleValue = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setCaptionValue(value);
@@ -43,7 +44,7 @@ const Page = () => {
       },
       body: JSON.stringify({
         caption: captionValue,
-        images: [image],
+        images: image
       }),
     });
 
@@ -65,6 +66,7 @@ const Page = () => {
         onChange={(e) => {
           fetchFile(e);
         }}
+        multiple={true}
       />
       <button onClick={photo}>submit</button>
       <Input
@@ -74,7 +76,10 @@ const Page = () => {
         }}
       />
       <div>
-      <img src={image ?? 'fallback-image.jpg'} />
+        <div>{image.map((img,index)=>{
+          return <img key={index} src={img} alt=""/>
+        })}</div>
+    
       </div>
       <Button onClick={createPost}>Post</Button>
       <Least />

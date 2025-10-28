@@ -9,6 +9,7 @@ import Buttom from "./_components/buttom";
 import { Heart } from "lucide-react";
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 type Post = {
   _id: string;
   caption: string;
@@ -126,7 +127,19 @@ console.log(like)
                 </div>
               </div>
 
-              <img className="w-[430] h-[523px]" src={posts?.images[0]} />
+<Carousel>
+  <CarouselContent>
+    {posts?.images.map((img,index)=>{
+      return <CarouselItem key={index}> <img src={img} alt=""/></CarouselItem>
+     
+    })}
+   
+
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+             
               <div className="gap-[10px] flex mt-[10px]">
                 <div
                   className="flex gap-[8px]"
