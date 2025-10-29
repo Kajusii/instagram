@@ -10,7 +10,7 @@ import { Heart } from "lucide-react";
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import API_BASE_URL from "./api/config";
+
 type Post = {
   _id: string;
   caption: string;
@@ -41,7 +41,7 @@ const Page = () => {
   const [like, setLike] = useState(0);
 
   const clickLikes = async (postId: string) => {
-    const res = await fetch(`${API_BASE_URL}/post/likes/${postId}`, {
+    const res = await fetch(`https://ig-backend-6yzx.onrender.com/post/likes/${postId}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -53,7 +53,7 @@ const Page = () => {
   };
 console.log(like)
   const getImages = async () => {
-    const res = await fetch(`${API_BASE_URL}/post/allpost`, {
+    const res = await fetch(`https://ig-backend-6yzx.onrender.com/post/allpost`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +64,7 @@ console.log(like)
     setPost(response);
   };
   const clickFollow = async (id: string) => {
-     await fetch(`${API_BASE_URL}/follow-toggle/${id}`, {
+     await fetch(`https://ig-backend-6yzx.onrender.com/follow-toggle/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

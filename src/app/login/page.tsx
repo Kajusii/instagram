@@ -28,7 +28,7 @@ const Page = () => {
   };
 
   const login = async () => {
-    const response = await fetch(`${API_BASE_URL}/login`, {
+    const response = await fetch(`https://ig-backend-6yzx.onrender.com/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

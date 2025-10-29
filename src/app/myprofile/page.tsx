@@ -33,7 +33,7 @@ const Page = () => {
   const router = useRouter();
 
   const getUserPost = async () => {
-    const data = await fetch(`${API_BASE_URL}/post/userpost`, {
+    const data = await fetch(`https://ig-backend-6yzx.onrender.com/post/userpost`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -16,7 +16,7 @@ const Page = () => {
     username: "",
   });
   const signup = async () => {
-    const data = await fetch(`${API_BASE_URL}/signup`, {
+    const data = await fetch(`https://ig-backend-6yzx.onrender.com/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -50,7 +50,7 @@ const Page = () => {
     image: "",
   });
   const clickLikes = async (postId: string) => {
-    const res = await fetch(`${API_BASE_URL}/post/likes/${postId}`, {
+    const res = await fetch(`https://ig-backend-6yzx.onrender.com/post/likes/${postId}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -62,7 +62,7 @@ const Page = () => {
   };
   console.log(like)
   const getUserPost = async () => {
-    const data = await fetch(`${API_BASE_URL}/post/userpost`, {
+    const data = await fetch(`https://ig-backend-6yzx.onrender.com/post/userpost`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ const Page = () => {
     setData(userPost);
   };
   const clickFollow = async (id: string) => {
-    await fetch(`${API_BASE_URL}/follow-toggle/${id}`, {
+    await fetch(`https://ig-backend-6yzx.onrender.com/follow-toggle/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ const Page = () => {
   };
   console.log(post);
   const deletePost = async (postId: string) => {
-    await fetch(`${API_BASE_URL}/post/delete/${postId}`, {
+    await fetch(`https://ig-backend-6yzx.onrender.com/post/delete/${postId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

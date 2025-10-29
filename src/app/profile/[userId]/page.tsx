@@ -40,7 +40,7 @@ const Page = () => {
   const [post, setPost] = useState<Post[]>([]);
   const [data, setData] = useState<Post>();
   const getOtherPost = async () => {
-    const data = await fetch(`${API_BASE_URL}/post/profile/${userId}`, {
+    const data = await fetch(`https://ig-backend-6yzx.onrender.com/post/profile/${userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ const Page = () => {
     setPost(userPost);
   };
   const getOtherData = async () => {
-    const data = await fetch(`${API_BASE_URL}/profile/${userId}`, {
+    const data = await fetch(`https://ig-backend-6yzx.onrender.com/profile/${userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

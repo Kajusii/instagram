@@ -7,7 +7,7 @@ import { useUser } from "@/provider/AuthProvider";
 import { Heart, MessageCircle } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import API_BASE_URL from "../../api/config";
+
 
 type Post = {
   _id: string;
@@ -50,7 +50,7 @@ const Page = () => {
   const [data, setData] = useState<Data>();
   const [like, setLike] = useState(0);
   const clickLikes = async (postId: string) => {
-    const res = await fetch(`${API_BASE_URL}/post/likes/${postId}`, {
+    const res = await fetch(`https://ig-backend-6yzx.onrender.com/post/likes/${postId}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -63,7 +63,7 @@ const Page = () => {
   console.log(like)
 
   const clickFollow = async (id: string) => {
-     await fetch(`${API_BASE_URL}follow-toggle/${id}`, {
+     await fetch(`https://ig-backend-6yzx.onrender.com/follow-toggle/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ const Page = () => {
     getOtherPost();
   };
   const getOtherPost = async () => {
-    const data = await fetch(`${API_BASE_URL}/post/profile/${userId}`, {
+    const data = await fetch(`https://ig-backend-6yzx.onrender.com/post/profile/${userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -83,7 +83,7 @@ const Page = () => {
     setPost(userPost);
   };
   const getOtherData = async () => {
-    const data = await fetch(`${API_BASE_URL}/profile/${userId}`, {
+    const data = await fetch(`https://ig-backend-6yzx.onrender.com/profile/${userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

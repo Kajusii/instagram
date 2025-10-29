@@ -37,7 +37,7 @@ const [image, setImage] = useState<string[]>([]);
   };
   console.log(captionValue);
   const createPost = async () => {
-    const response = await fetch(`${API_BASE_URL}post/create`, {
+    const response = await fetch(`https://ig-backend-6yzx.onrender.com/post/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

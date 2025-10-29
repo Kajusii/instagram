@@ -35,7 +35,7 @@ const Page = () => {
     setSearchValue(value);
   };
   const getAllUser = async () => {
-    const res = await fetch(`${API_BASE_URL}/allusers`, {
+    const res = await fetch(`https://ig-backend-6yzx.onrender.com/allusers`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
