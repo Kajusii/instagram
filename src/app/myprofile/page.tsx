@@ -3,6 +3,7 @@ import { useUser } from "@/provider/AuthProvider";
 import Buttom from "../_components/buttom";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import API_BASE_URL from "../api/config";
 
 type Post = {
   _id: string;
@@ -32,7 +33,7 @@ const Page = () => {
   const router = useRouter();
 
   const getUserPost = async () => {
-    const data = await fetch(`http://localhost:5555/post/userpost`, {
+    const data = await fetch(`${API_BASE_URL}/post/userpost`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -3,6 +3,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import Button from "../_components/buttom";
 import { useUser } from "@/provider/AuthProvider";
 import { useRouter } from "next/navigation";
+import API_BASE_URL from "../api/config";
 
 type User = {
   name: string;
@@ -34,7 +35,7 @@ const Page = () => {
     setSearchValue(value);
   };
   const getAllUser = async () => {
-    const res = await fetch(`http://localhost:5555/allusers`, {
+    const res = await fetch(`${API_BASE_URL}/allusers`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

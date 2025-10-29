@@ -1,5 +1,6 @@
 "use client";
 import Buttom from "@/app/_components/buttom";
+import API_BASE_URL from "@/app/api/config";
 import { useUser } from "@/provider/AuthProvider";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -39,7 +40,7 @@ const Page = () => {
   const [post, setPost] = useState<Post[]>([]);
   const [data, setData] = useState<Post>();
   const getOtherPost = async () => {
-    const data = await fetch(`http://localhost:5555/post/profile/${userId}`, {
+    const data = await fetch(`${API_BASE_URL}/post/profile/${userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -49,7 +50,7 @@ const Page = () => {
     setPost(userPost);
   };
   const getOtherData = async () => {
-    const data = await fetch(`http://localhost:5555/profile/${userId}`, {
+    const data = await fetch(`${API_BASE_URL}/profile/${userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

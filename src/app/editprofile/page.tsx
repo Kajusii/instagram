@@ -7,6 +7,7 @@ import { useUser } from "@/provider/AuthProvider";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { upload } from "@vercel/blob/client";
+import API_BASE_URL from "../api/config";
 
 const Page = () => {
   const router = useRouter();
@@ -46,7 +47,7 @@ const Page = () => {
     setImage(uploaded.url);
   };
   const editUser = async () => {
-    const res = await fetch("http://localhost:5555/editprofile", {
+    const res = await fetch(`${API_BASE_URL}/editprofile`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

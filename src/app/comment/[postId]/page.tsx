@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useUser } from "@/provider/AuthProvider";
 import { useParams, useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
+import API_BASE_URL from "../../api/config";
 type Comment = {
    post : {
   _id: string;
@@ -76,7 +77,7 @@ const Page = () => {
   console.log(input);
 
   const allComment = async () => {
-    const res = await fetch(`http://localhost:5555/comment/create/${postId}`, {
+    const res = await fetch(`${API_BASE_URL}/comment/create/${postId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -86,7 +87,7 @@ const Page = () => {
     setComment(response);
   };
   const deleteComment = async (commentId: string) => {
-    await fetch(`http://localhost:5555/comment/delete/${commentId}`, {
+    await fetch(`${API_BASE_URL}/comment/delete/${commentId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -97,7 +98,7 @@ const Page = () => {
   };
 
   const comment = async () => {
-     await fetch(`http://localhost:5555/comment/create/${postId}`, {
+     await fetch(`${API_BASE_URL}/comment/create/${postId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

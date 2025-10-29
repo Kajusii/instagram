@@ -7,6 +7,7 @@ import { upload } from "@vercel/blob/client";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 import Least from "../_components/buttom";
+import API_BASE_URL from "../api/config";
 
 const Page = () => {
   const { token } = useUser();
@@ -36,7 +37,7 @@ const [image, setImage] = useState<string[]>([]);
   };
   console.log(captionValue);
   const createPost = async () => {
-    const response = await fetch("http://localhost:5555/post/create", {
+    const response = await fetch(`${API_BASE_URL}post/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

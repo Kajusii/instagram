@@ -7,6 +7,7 @@ import {useUser } from "@/provider/AuthProvider";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
+import API_BASE_URL from "../api/config";
 
 const Page = () => {
   const { setToken, token } = useUser();
@@ -27,7 +28,7 @@ const Page = () => {
   };
 
   const login = async () => {
-    const response = await fetch("http://localhost:5555/login", {
+    const response = await fetch(`${API_BASE_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

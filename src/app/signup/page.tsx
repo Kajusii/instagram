@@ -6,6 +6,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/provider/AuthProvider";
 import { toast } from "sonner";
+import API_BASE_URL from "../api/config";
 const Page = () => {
   const { token, setToken } = useUser();
   const router = useRouter();
@@ -15,7 +16,7 @@ const Page = () => {
     username: "",
   });
   const signup = async () => {
-    const data = await fetch("http://localhost:5555/signup", {
+    const data = await fetch(`${API_BASE_URL}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
