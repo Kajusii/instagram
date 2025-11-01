@@ -78,7 +78,7 @@ const [image, setImage] = useState<string[]>([]);
       />
       <div>
         <div>{image.map((img,index)=>{
-          return <img key={index} src={img} alt="" className=" h-[400px] w-[300px]"/>
+          return <img key={index} src={img} alt="" />
         })}</div>
     
       </div>
