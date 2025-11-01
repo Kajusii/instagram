@@ -28,7 +28,7 @@ const [image, setImage] = useState<string[]>([]);
       handleUploadUrl: "/api/upload",
     });
     console.log(uploaded);
-    setImage((prev)=>[...prev,uploaded.url]);
+     
   };
   console.log(image)
   const handleValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +67,7 @@ const [image, setImage] = useState<string[]>([]);
         onChange={(e) => {
           fetchFile(e);
         }}
-        multiple={true}
+        multiple
       />
       <button onClick={photo}>submit</button>
       <Input
@@ -78,7 +78,7 @@ const [image, setImage] = useState<string[]>([]);
       />
       <div>
         <div>{image.map((img,index)=>{
-          return <img key={index} src={img} alt=""/>
+          return <img key={index} src={img} alt="" className=" h-[400px] w-[300px]"/>
         })}</div>
     
       </div>
