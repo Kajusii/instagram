@@ -50,24 +50,30 @@ const Page = () => {
     image: "",
   });
   const clickLikes = async (postId: string) => {
-    const res = await fetch(`https://ig-backend-6yzx.onrender.com/post/likes/${postId}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await fetch(
+      `https://ig-backend-6yzx.onrender.com/post/likes/${postId}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     const response = await res.json();
     setLike(response);
     getUserPost();
   };
-  console.log(like)
+  console.log(like);
   const getUserPost = async () => {
-    const data = await fetch(`https://ig-backend-6yzx.onrender.com/post/userpost`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const data = await fetch(
+      `https://ig-backend-6yzx.onrender.com/post/userpost`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     const userPost = await data.json();
     setData(userPost);
   };
@@ -81,7 +87,7 @@ const Page = () => {
     });
     getUserPost();
   };
-  console.log(post);
+
   const deletePost = async (postId: string) => {
     await fetch(`https://ig-backend-6yzx.onrender.com/post/delete/${postId}`, {
       method: "DELETE",

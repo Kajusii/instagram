@@ -47,18 +47,21 @@ const Page = () => {
     setImage(uploaded.url);
   };
   const editUser = async () => {
-    const res = await fetch(`${API_BASE_URL}/editprofile`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        username: inputValues.username,
-        bio: inputValues.bio,
-        profilePicture: image,
-      }),
-    });
+    const res = await fetch(
+      `https://ig-backend-6yzx.onrender.com/editprofile`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          username: inputValues.username,
+          bio: inputValues.bio,
+          profilePicture: image,
+        }),
+      }
+    );
     if (res.ok) {
       router.push("/");
     }

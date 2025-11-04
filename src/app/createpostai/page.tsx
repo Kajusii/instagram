@@ -75,17 +75,20 @@ const Page = () => {
     setCaptionValue(value);
   };
   const createPost = async () => {
-    const response = await fetch("http://localhost:5555/post/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        caption: captionValue,
-        images: [image],
-      }),
-    });
+    const response = await fetch(
+      "https://ig-backend-6yzx.onrender.com/post/create",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          caption: captionValue,
+          images: [image],
+        }),
+      }
+    );
     const res = response.json();
     console.log(res);
     console.log(user, "user");
@@ -134,7 +137,7 @@ const Page = () => {
           Generate
         </Button>
       </div>
-      <img src={image ?? 'fallback-image.jpg'}/>
+      <img src={image ?? "fallback-image.jpg"} />
       <Input
         placeholder="your caption"
         onChange={(e) => {
