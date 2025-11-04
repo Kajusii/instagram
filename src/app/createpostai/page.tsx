@@ -7,6 +7,7 @@ import { upload } from "@vercel/blob/client";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 import Instagram from "../_components/header";
+
 type Post = {
   _id: string;
   caption: string;
@@ -40,26 +41,15 @@ const Page = () => {
   const fetchData = async () => {
     if (!inputValue.trim()) return;
 
-    const res = await fetch(
-      "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.HF}`,
-        },
-        body: JSON.stringify({
-          inputs: inputValue,
-          parameters: {
-            negative_prompt: "blurry, bad quality, distorted",
-            num_inference_stops: 20,
-            guidance_scale: 7.6,
-          },
-        }),
-      }
-    );
+    const response = await fetch("/api/generate", {
+      method: "POST",
+      body: JSON.stringify(inputValue),
+    });
+    1;
 
-    const blob = await res.blob();
+    if (!response.ok) throw new Error("Failed to generate");
+
+    const blob = await response.blob();
 
     const file = new File([blob], "generated.png", { type: "image/png" });
 
@@ -70,6 +60,7 @@ const Page = () => {
 
     setImages(uploaded.url);
   };
+
   const captionValues = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setCaptionValue(value);

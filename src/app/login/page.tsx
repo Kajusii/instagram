@@ -3,7 +3,7 @@
 import Ig from "@/app/images/igLogo.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {useUser } from "@/provider/AuthProvider";
+import { useUser } from "@/provider/AuthProvider";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -101,7 +101,6 @@ const Page = () => {
             Sign up
           </a>
         </div>
-        {/* <div>{toast("hi")}</div> */}
       </div>
     </div>
   );
