@@ -45,7 +45,6 @@ const Page = () => {
       method: "POST",
       body: JSON.stringify({ prompt: inputValue }),
     });
-    1;
 
     if (!response.ok) throw new Error("Failed to generate");
 
@@ -56,6 +55,10 @@ const Page = () => {
     const uploaded = await upload(file.name, file, {
       access: "public",
       handleUploadUrl: "/api/upload",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     setImages(uploaded.url);
