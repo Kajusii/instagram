@@ -43,7 +43,7 @@ const Page = () => {
 
     const response = await fetch("/api/generate", {
       method: "POST",
-      body: JSON.stringify(inputValue),
+      body: JSON.stringify({ prompt: inputValue }),
     });
     1;
 
